@@ -16,17 +16,26 @@ An example project to query endangered species in various ways.
 
 3. Populate the local repository:
 
-    dart bin/species.dart populate
+   ```
+   dart bin/species.dart populate
+   ```
 
 4. Make a query:
 
-    dart bin/species.dart query Class:
+   ```
+   dart bin/species.dart query Class:
+   ```
+
+   ```
+   dart bin/species.dart query /Kingdom:Animalia/Phylum:Chordata/Class:Mammalia/Order:Carnivora
+   ```
 
 
-    dart bin/species.dart query /Kingdom:Animalia/Phylum:Chordata/Class:Mammalia/Order:Carnivora
+   ```
+   dart bin/species.dart query /Kingdom:Animalia/Phylum:Chordata/Class:Mammalia/Order:Primates/**
+   ```
 
 
-    dart bin/species.dart query /Kingdom:Animalia/Phylum:Chordata/Class:Mammalia/Order:Primates/**
-
-
-    dart bin/species.dart query Order:Sirenia
+   ```
+   dart bin/species.dart query Order:Sirenia
+   ```

@@ -23,6 +23,18 @@ An example project to query endangered species in various ways.
 4. Make a query:
 
    ```
+   dart bin/species.dart list
+   ```
+
+   ```
+   dart bin/species.dart lookup sci 'Bison bison bison'
+   ```
+
+   ```
+   dart bin/species.dart lookup com 'Plains Bison'
+   ```
+
+   ```
    dart bin/species.dart query Class:
    ```
 

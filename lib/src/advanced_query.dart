@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:io";
 import "package:entify/entify.dart";
 
 import "init.dart";
@@ -21,6 +22,26 @@ import "print.dart";
 ///   - `<rank>:<name>` (so basically a `<taxon>`) will list all
 ///     the species that has the specified taxon
 Future<Null> query(List<String> args) async {
+  if (args.isEmpty) {
+    stderr.writeln("""
+Queries the endangered species database.
+
+Two kinds of queries are supported:
+
+1. Taxonomic hierarchy query: a <taxon> is represented with
+  the format <rank>:<name>, using these the following can
+  be queried:
+  - '/<taxon>/<taxon>/' will list the very next level
+    ('/' will list the very first level)
+  - '/<taxon>/<taxon>/**' will list the whole subtree
+    ('/**' will list all the available paths)
+2. Taxon (rank) query
+  - '<rank>[:]' will list all the taxons with that rank
+  - '<rank>:<name>' (so basically a '<taxon>') will list all
+    the species that has the specified taxon
+""");
+    return;
+  }
   // We use a small batch size for demonstration purposes.
   const int batchSize = 10;
 
@@ -94,5 +115,5 @@ Future<Null> query(List<String> args) async {
   }
   watch.stop();
   print("\nQuery took ${watch.elapsed} with batch size ${batchSize} "
-    "($batchCount batch${batchCount != 1 ? 'es' : ''})\n");
+      "($batchCount batch${batchCount != 1 ? 'es' : ''})\n");
 }

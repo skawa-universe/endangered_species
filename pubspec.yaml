@@ -2,6 +2,8 @@ name: endangered_species
 
 dependencies:
   entify:
+    git:
+      url: https://github.com/skawa-universe/entify.git
   googleapis:
   googleapis_auth:
   http:

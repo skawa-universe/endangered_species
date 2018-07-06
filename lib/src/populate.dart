@@ -35,8 +35,17 @@ Future<Null> populate(List<String> args) async {
     species.add(spec);
   }
   DatastoreShell dsh = await datastoreFuture;
-  ds.CommitResponse result =
-      await (dsh.beginMutation()..upsertAll(species.map((s) => s.toEntity()))).executeRaw();
-  print("${species.length} entities written");
-  if (args.contains("--dump-response")) print(JSON.encode(result.toJson()));
+  try {
+    await dsh
+        .beginMutation()
+        .insertAll(species.map((s) => s.toEntity()))
+        .commit();
+    print("${species.length} entities written");
+  } on ds.DetailedApiRequestError catch (e) {
+    print("DetailedApiRequestError: ${e.message}/${e.status}");
+    print(JSON.encode(e.errors.map((e) => e.originalJson).toList()));
+  } on DatastoreShellError catch (e) {
+    print(e.runtimeType);
+    print(e);
+  }
 }

@@ -16,6 +16,6 @@ void printSpeciesEntities(Iterable<Entity> entities, {bool projected: false}) {
 void printSpecies(Iterable<Species> species) {
   print(species.map((s) {
     return "${s.scientificName}, commonly known as ${s.commonName}"
-        " is \"${s.status}\"\nTaxonomy: /${s.fullTaxonomyPath}";
+        " is \"${s.status}\"\nTaxonomy: /${s.fullTaxonomyPath}\n";
   }).join("\n"));
 }

@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:io";
 import "package:entify/entify.dart";
 
 import "init.dart";
@@ -7,9 +8,9 @@ import "print.dart";
 
 Future<Null> lookup(List<String> args) async {
   if (args.length < 2 || args[0] != "sci" && args[0] != "com") {
-    print("Usage:");
-    print("  - lookup sci <scientific name>");
-    print("  - lookup com <common name>");
+    stderr.writeln("Usage:");
+    stderr.writeln("  - lookup sci <scientific name>");
+    stderr.writeln("  - lookup com <common name>");
     return null;
   }
 

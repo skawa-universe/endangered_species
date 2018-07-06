@@ -94,9 +94,6 @@ class Species {
     return result;
   }
 
-  // An empty setter, because EntityBridge requires a setter.
-  void set taxonomyPaths(List<String> doesntMatter) {}
-
   /// A nonpersistent calculated field to print the taxonomic "path".
   String get fullTaxonomyPath => taxonomy.join('/');
 }

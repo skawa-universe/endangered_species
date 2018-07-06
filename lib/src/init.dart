@@ -10,7 +10,7 @@ const String credentialsPath = "datastoreCredentials.json";
 final bool localDevelopment = !new File(credentialsPath).existsSync();
 // Replace this with your own app id if you're using the Cloud Datastore,
 // and not the emulator
-const String appId = "species";
+const String appId = "protexbox";
 
 // Standard boilerplate code for getting a googleapis DatastoreApi object
 

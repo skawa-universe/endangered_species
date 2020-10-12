@@ -5,7 +5,7 @@ import "model.dart";
 void printSpeciesEntities(Iterable<Entity> entities, {bool projected: false}) {
   if (projected) {
     print(entities
-        .map((e) => (e["taxonomyPaths"] ?? e["taxonomy"] as String)
+        .map((e) => ((e["taxonomyPaths"] ?? e["taxonomy"]) as String)
             .replaceAll("/ ", "/"))
         .join("\n"));
   } else {

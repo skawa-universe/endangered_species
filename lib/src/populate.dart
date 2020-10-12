@@ -1,7 +1,7 @@
 import "dart:async";
 import "dart:math" as math;
 import "package:googleapis/datastore/v1.dart" as ds;
-import "dart:convert" show JSON;
+import "dart:convert" show json;
 import "dart:io";
 import "package:entify/entify.dart";
 
@@ -13,15 +13,16 @@ Future<Null> populate(List<String> args) async {
   Future<DatastoreShell> datastoreFuture = getDatastoreShell();
   File source = new File("endangered_species.json");
   String speciesJson = await source.readAsString();
-  Map<String, dynamic> allSpecSpec = JSON.decode(speciesJson);
-  String fieldNames = allSpecSpec["fields"];
+  Map<String, dynamic> allSpecSpec = json.decode(speciesJson);
+  List<String> fieldNames = List<String>.from(allSpecSpec["fields"]);
   int commonNameIndex = fieldNames.indexOf("Name");
   int sciNameIndex = fieldNames.indexOf("Scientific name");
   int statusIndex = fieldNames.indexOf("Status");
   int firstTaxon =
       math.max(math.max(commonNameIndex, sciNameIndex), statusIndex) + 1;
   List<Species> species = [];
-  for (List<String> values in allSpecSpec["data"]) {
+  for (List rawValues in allSpecSpec["data"]) {
+    List<String> values = List.from(rawValues);
     Species spec = new Species();
     spec.scientificName = values[sciNameIndex];
     spec.commonName = values[commonNameIndex];
@@ -43,7 +44,7 @@ Future<Null> populate(List<String> args) async {
     print("${species.length} entities written");
   } on ds.DetailedApiRequestError catch (e) {
     print("DetailedApiRequestError: ${e.message}/${e.status}");
-    print(JSON.encode(e.errors.map((e) => e.originalJson).toList()));
+    print(json.encode(e.errors.map((e) => e.originalJson).toList()));
   } on DatastoreShellError catch (e) {
     print(e.runtimeType);
     print(e);

@@ -44,7 +44,7 @@ An example project to query endangered species in various ways.
 
 
    ```
-   dart bin/species.dart query /Kingdom:Animalia/Phylum:Chordata/Class:Mammalia/Order:Primates/**
+   dart bin/species.dart query "/Kingdom:Animalia/Phylum:Chordata/Class:Mammalia/Order:Primates/**"
    ```
 
 

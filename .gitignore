@@ -21,3 +21,5 @@ Thumbs.db
 # You'll have add your own Datastore credentials if you want to test it
 # with the cloud (otherwise you'll have to run a local datastore)
 *Credentials.json
+
+.dart_tool
